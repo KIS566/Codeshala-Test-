@@ -1,38 +1,3 @@
-// Initialize default data structure
-const DEFAULT_DATA = {
-    timer: {
-        duration: 5,
-        enabled: true
-    },
-    quiz: {
-        title: "General Knowledge Quiz",
-        passingMarks: 60
-    },
-    questions: [
-        {
-            id: 1,
-            question: "What is the capital of India?",
-            options: {
-                A: "Mumbai",
-                B: "New Delhi",
-                C: "Kolkata",
-                D: "Chennai"
-            },
-            correct: "B"
-        },
-        {
-            id: 2,
-            question: "What is 2 + 2?",
-            options: {
-                A: "3",
-                B: "4",
-                C: "5",
-                D: "6"
-            },
-            correct: "B"
-        }
-    ]
-};
 
 // Load or initialize data
 function loadData() {
