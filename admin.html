@@ -86,6 +86,7 @@
             cursor: pointer;
             transition: all 0.3s;
             margin-right: 10px;
+            margin-bottom: 10px;
         }
         
         .btn-primary {
@@ -116,8 +117,19 @@
             background: #2f855a;
         }
         
+        .btn-warning {
+            background: #ed8936;
+            color: white;
+        }
+        
+        .btn-warning:hover {
+            background: #dd6b20;
+        }
+        
         .question-list {
             margin-top: 20px;
+            max-height: 500px;
+            overflow-y: auto;
         }
         
         .question-item {
@@ -129,6 +141,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
         }
         
         .question-text {
@@ -145,24 +158,43 @@
             display: flex;
             gap: 20px;
             align-items: center;
+            flex-wrap: wrap;
         }
         
         .setting-group .form-group {
             flex: 1;
-        }
-        
-        .timer-display {
-            font-size: 2em;
-            color: #667eea;
-            font-weight: bold;
-            text-align: center;
-            margin: 20px 0;
+            min-width: 150px;
         }
         
         .export-section {
             display: flex;
             gap: 10px;
+            flex-wrap: wrap;
             margin-top: 20px;
+        }
+        
+        .stats {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .question-item {
+                flex-direction: column;
+            }
+            
+            .question-actions {
+                margin-top: 10px;
+            }
         }
     </style>
 </head>
@@ -176,7 +208,7 @@
             <div class="setting-group">
                 <div class="form-group">
                     <label>Timer Duration (minutes):</label>
-                    <input type="number" id="timerDuration" value="5" min="1" max="120">
+                    <input type="number" id="timerDuration" value="10" min="1" max="120">
                 </div>
                 <div class="form-group">
                     <label>Enable Timer:</label>
@@ -237,13 +269,13 @@
                     <option value="D">D</option>
                 </select>
             </div>
-            <button class="btn btn-success" onclick="addQuestion()">Add Question</button>
-            <button class="btn btn-primary" onclick="clearForm()">Clear Form</button>
+            <button class="btn btn-success" onclick="addQuestion()">➕ Add Question</button>
+            <button class="btn btn-primary" onclick="clearForm()">🗑️ Clear Form</button>
         </div>
         
         <!-- Question List -->
         <div class="section">
-            <h2>📋 Current Questions (<span id="questionCount">0</span>)</h2>
+            <h2>📋 Current Questions <span class="stats" id="questionCount">0</span></h2>
             <div class="question-list" id="questionList"></div>
         </div>
         
@@ -253,6 +285,7 @@
             <div class="export-section">
                 <button class="btn btn-primary" onclick="exportData()">📥 Export Questions</button>
                 <button class="btn btn-success" onclick="document.getElementById('importFile').click()">📤 Import Questions</button>
+                <button class="btn btn-warning" onclick="resetToDefault()">🔄 Reset to Default 20 Questions</button>
                 <input type="file" id="importFile" accept=".json" style="display: none" onchange="importData(event)">
             </div>
         </div>
